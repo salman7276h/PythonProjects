@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GrabTheDeals - Product Search</title>
+  <style>
+    /* ===== BASIC STYLES ===== */
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+      color: #333;
+    }
+
+    h1 {
+      color: #0078ff;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease;
+    }
+
+    h2 {
+      margin-top: 40px;
+      color: #555;
+      animation: fadeInUp 1s ease;
+    }
+
+    /* ===== SEARCH BAR ===== */
+    #searchInput {
+      padding: 10px;
+      width: 250px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      outline: none;
+      transition: 0.3s;
+    }
+    #searchInput:focus {
+      border-color: #0078ff;
+      box-shadow: 0 0 8px rgba(0,120,255,0.4);
+    }
+
+    button {
+      background: #0078ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    button:hover {
+      background: #005ecc;
+      transform: scale(1.05);
+    }
+
+    /* ===== PRODUCT CARD ===== */
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      margin: 15px;
+      width: 250px;
+      display: inline-block;
+      vertical-align: top;
+      text-align: center;
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeIn 1s ease forwards;
+      opacity: 0;
+    }
+
+    .product:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .product img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 10px;
+      transition: transform 0.4s ease;
+    }
+
+    .product img:hover {
+      transform: scale(1.1);
+    }
+
+    .product a {
+      text-decoration: none;
+      color: #0078ff;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .product a:hover {
+      color: #ff6b6b;
+    }
+
+    /* ===== ANIMATIONS ===== */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+  <h1>GrabTheDeals 🔥</h1>
+
+  <!-- Search box -->
+  <input type="text" id="searchInput" placeholder="Search for a product..." />
+  <button onclick="searchProduct()">Search</button>
+
+  <h2>Search Results</h2>
+  <div id="productList"></div>
+
+  <h2>🔥 Trending Products</h2>
+  <div id="trendingProducts"></div>
+
+  <script>
+    const products = [
+      {
+        name: "Realme Narzo 60 5G",
+        image: "https://m.media-amazon.com/images/I/61u9zN1HYCL._SX679_.jpg",
+        amazonLink: "https://amzn.to/3RhC6cA",
+        flipkartLink: "https://www.flipkart.com/",
+      },
+      {
+        name: "boAt Airdopes 141",
+        image: "https://m.media-amazon.com/images/I/51HBom8xz7L._SX679_.jpg",
+        amazonLink: "https://amzn.to/3uWvjQx",
+        flipkartLink: "https://www.flipkart.com/",
+      },
+      {
+        name: "Samsung Galaxy M14 5G",
+        image: "https://m.media-amazon.com/images/I/81ZSn2rk9WL._SX679_.jpg",
+        amazonLink: "https://amzn.to/4bfUwI5",
+        flipkartLink: "https://www.flipkart.com/",
+      }
+    ];
+
+    // Function to handle search
+    function searchProduct() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const productList = document.getElementById("productList");
+      productList.innerHTML = "";
+
+      const matchedProducts = products.filter(product =>
+        product.name.toLowerCase().includes(input)
+      );
+
+      if (matchedProducts.length > 0) {
+        matchedProducts.forEach((product, index) => {
+          const card = document.createElement("div");
+          card.className = "product";
+          card.style.animationDelay = `${index * 0.2}s`;
+          card.innerHTML = `
+            <h3>${product.name}</h3>
+            <img src="${product.image}" alt="${product.name}" width="200"/>
+            <p>
+              <a href="${product.amazonLink}" target="_blank">Buy on Amazon</a><br/>
+              <a href="${product.flipkartLink}" target="_blank">Buy on Flipkart</a>
+            </p>
+          `;
+          productList.appendChild(card);
+        });
+      } else {
+        productList.innerHTML = `<p>No matching product found.</p>`;
+      }
+    }
+
+    // Function to show trending products with fade animation
+    function showTrendingProducts() {
+      const trendingDiv = document.getElementById("trendingProducts");
+      trendingDiv.innerHTML = "";
+      products.slice(0, 3).forEach((p, index) => {
+        const card = document.createElement("div");
+        card.className = "product";
+        card.style.animationDelay = `${index * 0.3}s`;
+        card.innerHTML = `
+          <h3>${p.name}</h3>
+          <img src="${p.image}" alt="${p.name}" width="200"/>
+          <p>
+            <a href="${p.amazonLink}" target="_blank">Amazon</a><br/>
+            <a href="${p.flipkartLink}" target="_blank">Flipkart</a>
+          </p>
+        `;
+        trendingDiv.appendChild(card);
+      });
+    }
+
+    window.onload = showTrendingProducts;
+  </script>
+</body>
+</html>

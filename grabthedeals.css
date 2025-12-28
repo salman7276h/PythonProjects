@@ -1,0 +1,155 @@
+/* 🌟 Base Styles */
+body {
+  font-family: 'Poppins', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+  overflow-x: hidden;
+}
+
+/* 🌟 Container */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* 🌟 Headings */
+h1, h2, h3 {
+  text-align: center;
+  color: #222;
+  letter-spacing: 1px;
+  animation: slideDown 0.8s ease-out;
+}
+
+/* 🔍 Search Bar */
+.search-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 25px 0;
+  animation: fadeIn 1.2s ease-in;
+}
+
+input[type="text"] {
+  width: 260px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 6px;
+  transition: 0.3s ease;
+}
+input[type="text"]:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+}
+
+/* 🔘 Button with subtle animation */
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+button:active {
+  transform: scale(0.98);
+}
+
+/* ✨ Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+/* 💎 Product Cards */
+.product {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.4s ease;
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards;
+}
+.product:nth-child(1) { animation-delay: 0.1s; }
+.product:nth-child(2) { animation-delay: 0.3s; }
+.product:nth-child(3) { animation-delay: 0.5s; }
+.product:nth-child(4) { animation-delay: 0.7s; }
+
+.product:hover {
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.2);
+}
+
+/* 🖼️ Product Image */
+.product img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.4s ease;
+}
+.product img:hover {
+  transform: scale(1.08);
+}
+
+/* 🔗 Buttons (Amazon / Flipkart Links) */
+.product a {
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 8px;
+  color: #fff;
+  background: #007bff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
+.product a:hover {
+  background: #ff6b6b;
+  transform: scale(1.08);
+}
+
+/* ⚙️ Footer */
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  background: #333;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  animation: fadeIn 2s ease;
+}
+
+/* 🔮 Keyframe Animations */
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
